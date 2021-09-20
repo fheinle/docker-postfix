@@ -2,7 +2,7 @@
 
 set -eu
 
-
+echo "Configuring postfix"
 echo "${relayhost} ${relayuser}:${relaypassword}" > /etc/postfix/sasl_password
 postmap /etc/postfix/sasl_password
 
@@ -22,5 +22,5 @@ postconf -e "smtp_use_tls = yes"
 echo "nameserver 1.1.1.1" > /var/spool/postfix/etc/resolv.conf
 echo "nameserver 1.1.1.1" > /etc/resolv.conf
 
-
+echo "Starting postfix"
 exec /usr/sbin/postfix start-fg
